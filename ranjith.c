@@ -1,5 +1,3 @@
-// 02-07-2025
-
 // 1. To print right angled triangled shaped stars
 // *
 // **
