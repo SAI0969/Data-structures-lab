@@ -147,3 +147,18 @@ void search(struct node *start, int key) {
         printf("\nElement %d not found in the list.", key);
     }
 }
+
+// output
+Enter the number of nodes in list: 3
+Enter the value to be inserted: 1
+Enter the value to be inserted: 2
+Enter the value to be inserted: 3
+
+List:
+3
+2
+1
+
+Enter the element to search for: 2
+Element 2 found at position 2
+
