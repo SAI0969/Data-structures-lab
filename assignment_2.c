@@ -183,3 +183,111 @@ Deleted node before 40: 20
 
 Final list after deletions:
 List: 40 -> NULL
+
+
+//2
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+// Node structure
+struct node {
+    int info;
+    struct node *next;
+};
+
+// Function Prototypes
+struct node* createList(int n);
+void display(struct node *start);
+struct node* reverse(struct node *start);
+
+int main() {
+    struct node *start = NULL;
+    int n;
+
+    printf("Enter the number of nodes: ");
+    scanf("%d", &n);
+
+    start = createList(n);
+
+    printf("\nOriginal List:\n");
+    display(start);
+
+    start = reverse(start);
+
+    printf("\nReversed List:\n");
+    display(start);
+
+    return 0;
+}
+
+// 🔧 Create a linked list of n nodes
+struct node* createList(int n) {
+    struct node *start = NULL, *newNode, *temp;
+    int data, i;
+
+    for (i = 1; i <= n; i++) {
+        printf("Enter data for node %d: ", i);
+        scanf("%d", &data);
+
+        newNode = (struct node*)malloc(sizeof(struct node));
+        newNode->info = data;
+        newNode->next = NULL;
+
+        if (start == NULL) {
+            start = newNode;
+        } else {
+            temp = start;
+            while (temp->next != NULL)
+                temp = temp->next;
+            temp->next = newNode;
+        }
+    }
+    return start;
+}
+
+// 📃 Display the linked list
+void display(struct node *start) {
+    if (start == NULL) {
+        printf("List is empty.\n");
+        return;
+    }
+
+    while (start != NULL) {
+        printf("%d -> ", start->info);
+        start = start->next;
+    }
+    printf("NULL\n");
+}
+
+// 🔁 Reverse the linked list
+struct node* reverse(struct node* start) {
+    struct node *prev = NULL, *current = start, *nextNode;
+
+    while (current != NULL) {
+        nextNode = current->next;   // Store next
+        current->next = prev;       // Reverse current node's pointer
+        prev = current;             // Move prev and current one step forward
+        current = nextNode;
+    }
+
+    return prev; // New head of reversed list
+}
+
+
+
+//output 
+
+Enter the number of nodes: 5
+Enter data for node 1: 10
+Enter data for node 2: 20
+Enter data for node 3: 30
+Enter data for node 4: 40
+Enter data for node 5: 50
+
+Original List:
+10 -> 20 -> 30 -> 40 -> 50 -> NULL
+
+Reversed List:
+50 -> 40 -> 30 -> 20 -> 10 -> NULL
