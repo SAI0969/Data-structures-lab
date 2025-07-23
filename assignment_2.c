@@ -291,3 +291,129 @@ Original List:
 
 Reversed List:
 50 -> 40 -> 30 -> 20 -> 10 -> NULL
+
+
+
+//3 
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+// Node structure
+struct node {
+    int info;
+    struct node *next;
+};
+
+// Function Prototypes
+struct node* createList(int n);
+void display(struct node *start);
+void findNthFromEnd(struct node *start, int n);
+
+int main() {
+    struct node *start = NULL;
+    int n, pos;
+
+    printf("Enter number of nodes: ");
+    scanf("%d", &n);
+
+    start = createList(n);
+    printf("\nLinked List: ");
+    display(start);
+
+    printf("\nEnter n to find nth node from the end: ");
+    scanf("%d", &pos);
+
+    findNthFromEnd(start, pos);
+
+    return 0;
+}
+
+// Create list with n nodes
+struct node* createList(int n) {
+    struct node *start = NULL, *newNode, *temp;
+    int data, i;
+
+    for (i = 1; i <= n; i++) {
+        printf("Enter data for node %d: ", i);
+        scanf("%d", &data);
+
+        newNode = (struct node*)malloc(sizeof(struct node));
+        newNode->info = data;
+        newNode->next = NULL;
+
+        if (start == NULL) {
+            start = newNode;
+        } else {
+            temp = start;
+            while (temp->next != NULL)
+                temp = temp->next;
+            temp->next = newNode;
+        }
+    }
+    return start;
+}
+
+// Display the list
+void display(struct node *start) {
+    if (start == NULL) {
+        printf("List is empty.\n");
+        return;
+    }
+
+    while (start != NULL) {
+        printf("%d -> ", start->info);
+        start = start->next;
+    }
+    printf("NULL\n");
+}
+
+// Find nth node from end using two-pointer method
+void findNthFromEnd(struct node *start, int n) {
+    if (start == NULL) {
+        printf("List is empty.\n");
+        return;
+    }
+
+    if (n <= 0) {
+        printf("Invalid value of n: %d\n", n);
+        return;
+    }
+
+    struct node *first = start, *second = start;
+    int count = 0;
+
+    // Move first pointer n nodes ahead
+    while (count < n) {
+        if (first == NULL) {
+            printf("n = %d is greater than the length of the list.\n", n);
+            return;
+        }
+        first = first->next;
+        count++;
+    }
+
+    // Move both pointers until first reaches the end
+    while (first != NULL) {
+        first = first->next;
+        second = second->next;
+    }
+
+    printf("The %dth node from the end is: %d\n", n, second->info);
+}
+
+
+// output 
+
+Enter number of nodes: 5
+Enter data for node 1: 10
+Enter data for node 2: 20
+Enter data for node 3: 30
+Enter data for node 4: 40
+Enter data for node 5: 50
+
+Linked List: 10 -> 20 -> 30 -> 40 -> 50 -> NULL
+
+Enter n to find nth node from the end: 2
+The 2th node from the end is: 40
