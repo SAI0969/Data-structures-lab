@@ -417,3 +417,169 @@ Linked List: 10 -> 20 -> 30 -> 40 -> 50 -> NULL
 
 Enter n to find nth node from the end: 2
 The 2th node from the end is: 40
+
+
+
+//4
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+// Node structure
+struct node {
+    int info;
+    struct node *next;
+};
+
+// Function Prototypes
+struct node* createList(int n);
+void display(struct node *start);
+bool isPalindrome(struct node *start);
+struct node* reverse(struct node *head);
+bool compareLists(struct node* head1, struct node* head2);
+
+int main() {
+    struct node *start = NULL;
+    int n;
+
+    printf("Enter number of nodes: ");
+    scanf("%d", &n);
+
+    start = createList(n);
+
+    printf("\nLinked List: ");
+    display(start);
+
+    if (isPalindrome(start))
+        printf("\nThe list is a palindrome.\n");
+    else
+        printf("\nThe list is NOT a palindrome.\n");
+
+    return 0;
+}
+
+// 🔧 Create a list
+struct node* createList(int n) {
+    struct node *start = NULL, *newNode, *temp;
+    int data, i;
+
+    for (i = 1; i <= n; i++) {
+        printf("Enter data for node %d: ", i);
+        scanf("%d", &data);
+
+        newNode = (struct node*)malloc(sizeof(struct node));
+        newNode->info = data;
+        newNode->next = NULL;
+
+        if (start == NULL) {
+            start = newNode;
+        } else {
+            temp = start;
+            while (temp->next != NULL)
+                temp = temp->next;
+            temp->next = newNode;
+        }
+    }
+    return start;
+}
+
+// 🖨️ Display list
+void display(struct node *start) {
+    if (start == NULL) {
+        printf("List is empty.\n");
+        return;
+    }
+
+    while (start != NULL) {
+        printf("%d -> ", start->info);
+        start = start->next;
+    }
+    printf("NULL\n");
+}
+
+// 🔁 Reverse a linked list
+struct node* reverse(struct node *head) {
+    struct node *prev = NULL, *curr = head, *nextNode;
+
+    while (curr != NULL) {
+        nextNode = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = nextNode;
+    }
+
+    return prev;
+}
+
+// 🔍 Compare two lists
+bool compareLists(struct node* head1, struct node* head2) {
+    while (head1 && head2) {
+        if (head1->info != head2->info)
+            return false;
+        head1 = head1->next;
+        head2 = head2->next;
+    }
+    return true;
+}
+
+// 🔁 Check if list is palindrome
+bool isPalindrome(struct node *start) {
+    if (start == NULL || start->next == NULL)
+        return true;
+
+    struct node *slow = start, *fast = start;
+    struct node *prev_slow = NULL;
+
+    // Step 1: Find middle
+    while (fast && fast->next) {
+        fast = fast->next->next;
+        prev_slow = slow;
+        slow = slow->next;
+    }
+
+    struct node *secondHalf, *midNode = NULL;
+
+    // For odd number of nodes, skip middle
+    if (fast != NULL) {
+        midNode = slow;
+        slow = slow->next;
+    }
+
+    // Step 2: Reverse second half
+    secondHalf = reverse(slow);
+    prev_slow->next = NULL;
+
+    // Step 3: Compare
+    bool result = compareLists(start, secondHalf);
+
+    // Step 4 (optional): Restore original list
+    secondHalf = reverse(secondHalf);
+    if (midNode) {
+        prev_slow->next = midNode;
+        midNode->next = secondHalf;
+    } else {
+        prev_slow->next = secondHalf;
+    }
+
+    return result;
+}
+
+
+//output
+Enter number of nodes: 5
+Enter data for node 1: 1
+Enter data for node 2: 2
+Enter data for node 3: 3
+Enter data for node 4: 2
+Enter data for node 5: 1
+
+Linked List: 1 -> 2 -> 3 -> 2 -> 1 -> NULL
+The list is a palindrome.
+
+
+
+//5
+
+
