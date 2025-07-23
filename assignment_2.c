@@ -583,3 +583,105 @@ The list is a palindrome.
 //5
 
 
+#include <stdio.h>
+#include <stdlib.h>
+
+// Node structure
+struct node {
+    int info;
+    struct node *next;
+};
+
+// Function prototypes
+struct node* createList(int n);
+void display(struct node *start);
+void findMiddle(struct node *start);
+
+int main() {
+    struct node *start = NULL;
+    int n;
+
+    printf("Enter the number of nodes: ");
+    scanf("%d", &n);
+
+    start = createList(n);
+
+    printf("\nLinked List: ");
+    display(start);
+
+    findMiddle(start);
+
+    return 0;
+}
+
+// 🔧 Create list with n nodes
+struct node* createList(int n) {
+    struct node *start = NULL, *newNode, *temp;
+    int data, i;
+
+    for (i = 1; i <= n; i++) {
+        printf("Enter data for node %d: ", i);
+        scanf("%d", &data);
+
+        newNode = (struct node*)malloc(sizeof(struct node));
+        newNode->info = data;
+        newNode->next = NULL;
+
+        if (start == NULL) {
+            start = newNode;
+        } else {
+            temp = start;
+            while (temp->next != NULL)
+                temp = temp->next;
+            temp->next = newNode;
+        }
+    }
+    return start;
+}
+
+// 🖨️ Display the list
+void display(struct node *start) {
+    if (start == NULL) {
+        printf("List is empty.\n");
+        return;
+    }
+
+    while (start != NULL) {
+        printf("%d -> ", start->info);
+        start = start->next;
+    }
+    printf("NULL\n");
+}
+
+// 🔍 Find the middle node using two-pointer method
+void findMiddle(struct node *start) {
+    if (start == NULL) {
+        printf("The list is empty.\n");
+        return;
+    }
+
+    struct node *slow = start;
+    struct node *fast = start;
+
+    while (fast != NULL && fast->next != NULL) {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+
+    printf("Middle node value: %d\n", slow->info);
+}
+
+
+// output
+
+Enter the number of nodes: 5
+Enter data for node 1: 10
+Enter data for node 2: 20
+Enter data for node 3: 30
+Enter data for node 4: 40
+Enter data for node 5: 50
+
+Linked List: 10 -> 20 -> 30 -> 40 -> 50 -> NULL
+Middle node value: 30
+
+
