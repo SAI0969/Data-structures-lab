@@ -182,3 +182,136 @@ struct node* deleteBefore(struct node *start, int key) {
 
     return start;
 }
+
+
+output ->>
+
+Enter number of nodes: 5
+Enter data for node 1: 1
+Enter data for node 2: 2
+Enter data for node 3: 3
+Enter data for node 4: 4
+Enter data for node 5: 6
+
+
+Menu:
+1. Display
+2. Delete First
+3. Delete Last
+4. Delete After Key
+5. Delete Before Key
+6. Exit
+Enter your choice: 1
+List: 1 -> 2 -> 3 -> 4 -> 6 -> NULL
+
+
+Menu:
+1. Display
+2. Delete First
+3. Delete Last
+4. Delete After Key
+5. Delete Before Key
+6. Exit
+Enter your choice: 2
+First node deleted.
+
+
+Menu:
+1. Display
+2. Delete First
+3. Delete Last
+4. Delete After Key
+5. Delete Before Key
+6. Exit
+Enter your choice: 1
+List: 2 -> 3 -> 4 -> 6 -> NULL
+
+
+Menu:
+1. Display
+2. Delete First
+3. Delete Last
+4. Delete After Key
+5. Delete Before Key
+6. Exit
+Enter your choice: 3
+Last node deleted.
+
+
+Menu:
+1. Display
+2. Delete First
+3. Delete Last
+4. Delete After Key
+5. Delete Before Key
+6. Exit
+Enter your choice: 1
+List: 2 -> 3 -> 4 -> NULL
+
+
+Menu:
+1. Display
+2. Delete First
+3. Delete Last
+4. Delete After Key
+5. Delete Before Key
+6. Exit
+Enter your choice: 4
+Enter key after which to delete: 3
+Node after 3 deleted.
+
+
+Menu:
+1. Display
+2. Delete First
+3. Delete Last
+4. Delete After Key
+5. Delete Before Key
+6. Exit
+Enter your choice: 1
+List: 2 -> 3 -> NULL
+
+
+Menu:
+1. Display
+2. Delete First
+3. Delete Last
+4. Delete After Key
+5. Delete Before Key
+6. Exit
+Enter your choice: 5
+Enter key before which to delete: 3
+Node before 3 deleted.
+
+
+Menu:
+1. Display
+2. Delete First
+3. Delete Last
+4. Delete After Key
+5. Delete Before Key
+6. Exit
+Enter your choice: 1
+List: 3 -> NULL
+
+
+Menu:
+1. Display
+2. Delete First
+3. Delete Last
+4. Delete After Key
+5. Delete Before Key
+6. Exit
+Enter your choice: 2
+First node deleted.
+
+
+Menu:
+1. Display
+2. Delete First
+3. Delete Last
+4. Delete After Key
+5. Delete Before Key
+6. Exit
+Enter your choice: 1
+List is empty.
