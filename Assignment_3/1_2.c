@@ -90,3 +90,19 @@ int main() {
 
     return 0;
 }
+
+output ->>
+
+Enter the number of nodes: 5
+Enter data for node 1: 1
+Enter data for node 2: 2
+Enter data for node 3: 3
+Enter data for node 4: 4
+Enter data for node 5: 5
+
+Doubly linked list in forward direction:
+1 2 3 4 5
+
+Enter the key to search: 9
+
+Key 9 not found in the list.
