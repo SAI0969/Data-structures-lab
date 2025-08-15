@@ -102,3 +102,4 @@ int isEmpty(struct Stack s) {
 int isFull(struct Stack s) {
     return s.top == MAX - 1;
 }
+
