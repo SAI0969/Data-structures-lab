@@ -41,3 +41,17 @@ Enter the number at 8 : 8
 Enter the number at 9 : 9
 Enter the element to search : 15
 Element 15 is not found in the array
+
+
+best case complexity is of order 0(1)
+    
+The element is found at the first position of the list.
+    
+worst case complexity is of order 0(n)
+
+The element is not present in the list, or
+It is present at the last position.
+
+
+Average case complexity is of order 0(n)
+Element somewhere in the middle
